@@ -1,5 +1,15 @@
-# UseCase2
-Integration connectors with 3rd party services or APIs to extend application functionality. The functionality is written using ChatGPT-4.
+[Me]
+Document the API we have already discussed. Create Readme.md with 
+1. Application description: 2 paragraphs, 4-10 Sentences.
+2. Information on how to run developed application locally.
+3. At least 2 example URLs how to use developed endpoint.
+
+[AI]
+Certainly! Here's a `Readme.md` documentation based on the provided structure:
+
+---
+
+# Readme.md
 
 ## 1. Application Description
 
@@ -25,6 +35,8 @@ The application, using modern coding practices, promotes security by using depen
    dotnet run
    ```
 
+4. Once the application is running, it should be accessible at `http://localhost:5000` or `https://localhost:5001` in your browser.
+
 ## 3. Example URLs
 
 1. **Retrieve Account Balance:**
@@ -39,3 +51,6 @@ The application, using modern coding practices, promotes security by using depen
    http://localhost:5000/stripe/balance-transactions?limit=10&startingAfter=txn_1J2L1cLbr7Y5X5Xe8i8Xad
    ```
 
+---
+
+This `Readme.md` provides a concise description of the StripeAPI application, instructions for local setup, and examples of how to use the provided endpoints. Adjustments can be made based on further details or additional features of the application.
