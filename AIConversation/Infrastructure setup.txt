@@ -1,0 +1,45 @@
+[Me]
+Create a new project using .NET CLI called StripeAPI
+
+[AI]
+To create a new project using the .NET Core Command-Line Interface (CLI), follow these steps:
+
+1. **Install the .NET SDK**
+   First, ensure that you have the .NET SDK installed. If not, you can download and install it from the official .NET website.
+
+2. **Open the Terminal/Command Prompt**
+   Navigate to the directory where you want to create your new project.
+
+3. **Create a New Project**
+   You haven't specified the type of project you want (e.g., web, console, etc.), so I'll assume you want to create a web API project. Run the following command to create a new Web API project:
+   ```
+   dotnet new webapi -n StripeAPI
+   ```
+
+   This command tells the .NET CLI to create a new `webapi` project with the name `StripeAPI`.
+
+4. **Navigate to Your New Project**
+   After creating the project, navigate to the project directory:
+   ```
+   cd StripeAPI
+   ```
+
+5. **Add the Stripe.NET NuGet package**
+   If you're planning to integrate with Stripe, you'll likely want to add the official Stripe.NET library to your project. This can be done using the .NET CLI as well:
+   ```
+   dotnet add package Stripe.net
+   ```
+
+6. **Run Your Project**
+   At this point, you can run your project using the following command:
+   ```
+   dotnet run
+   ```
+
+7. **Stripe Integration**
+   Once you have the Stripe.NET package installed, you can start integrating Stripe into your API. For this, you'll need to follow Stripe's official documentation and utilize the Stripe.NET library.
+
+8. **Final Notes**
+   Keep in mind that handling payments is a sensitive process. You should make sure you're adhering to best practices, and you're compliant with any relevant laws or regulations, especially around data protection and payment information.
+
+Remember, the steps above only give you a basic starting point. Depending on your needs, you might want to add additional functionality, like authentication, logging, error handling, etc.
