@@ -1,0 +1,73 @@
+[Me]
+Create GET endpoint to list balance transactions with pagination
+By calling the endpoint above make a request to the public `Stripe` API using endpoint from this document https://stripe.com/docs/testing to list balance 
+
+[AI]
+To create a GET endpoint to list balance transactions with pagination, and to integrate it with the Stripe API, follow these steps:
+
+1. **Setup the Controller**
+
+You'll first need to create or update an existing controller. For this example, I'll create a `StripeController`.
+
+2. **Install and Configure Stripe.NET**
+
+If you haven't already, make sure you've added the `Stripe.net` NuGet package:
+```bash
+dotnet add package Stripe.net
+```
+
+Retrieve the Stripe API key securely (as mentioned before, never hard-code it):
+
+```csharp
+StripeConfiguration.ApiKey = Configuration["Stripe:ApiKey"];
+```
+
+3. **Create the Endpoint with Pagination**
+
+Here's how you can create an endpoint in your `StripeController` to fetch balance transactions with pagination:
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Stripe;
+
+[ApiController]
+[Route("[controller]")]
+public class StripeController : ControllerBase
+{
+    private readonly BalanceTransactionService _balanceTransactionService;
+
+    public StripeController(BalanceTransactionService balanceTransactionService)
+    {
+        _balanceTransactionService = balanceTransactionService;
+    }
+
+    [HttpGet("balance-transactions")]
+    public IActionResult GetBalanceTransactions(int limit = 10, string startingAfter = null)
+    {
+        var options = new BalanceTransactionListOptions
+        {
+            Limit = limit,
+            StartingAfter = startingAfter
+        };
+
+        var balanceTransactions = _balanceTransactionService.List(options);
+        return Ok(balanceTransactions);
+    }
+}
+```
+
+In the above code:
+- The default page size is set to 10, but it can be overridden with the `limit` query parameter.
+- To fetch the next page, you can provide the ID of the last transaction on the current page as the `startingAfter` parameter. This ID tells Stripe where to start the next set of records.
+  
+4. **Register the `BalanceTransactionService`**
+
+In your `Startup.cs` or `Program.cs` (if using .NET 6's minimal API), register the `BalanceTransactionService`:
+
+```csharp
+services.AddSingleton<BalanceTransactionService>();
+```
+
+With the endpoint created, when you call `/stripe/balance-transactions`, it'll fetch the balance transactions from Stripe with the given pagination parameters. Adjust the default pagination size (`limit`) as you see fit.
+
+Note: Always refer to Stripe's official documentation (https://stripe.com/docs/testing) and the Stripe.NET library documentation to ensure you're using the latest and correct methods and properties.

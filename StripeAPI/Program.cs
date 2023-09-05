@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 // Stripe API integration
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:ApiKey"];
 builder.Services.AddSingleton<BalanceService>();
+builder.Services.AddSingleton<BalanceTransactionService>();
 
 
 var app = builder.Build();
