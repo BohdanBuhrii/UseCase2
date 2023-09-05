@@ -21,7 +21,9 @@ namespace StripeAPI.Middlewares
       {
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-        await httpContext.Response.WriteAsync(new { error = ex.Message }.ToString());
+
+        var text = new { error = ex.Message }.ToString() ?? string.Empty;
+        await httpContext.Response.WriteAsync(text);
       }
     }
   }
